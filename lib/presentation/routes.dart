@@ -1,5 +1,6 @@
 import 'package:advanced_tips/presentation/modules/auth/login/login.dart';
 import 'package:advanced_tips/presentation/modules/auth/register/register.dart';
+import 'package:advanced_tips/presentation/modules/on_boarding/on_boarding.dart';
 import 'package:advanced_tips/presentation/modules/splash/splash.dart';
 import 'package:advanced_tips/presentation/shared/resources/strings.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class Routes {
   static const String forgetpasswordRoute = "/forgetpassword";
   static const String mainRoute = "/main";
   static const String storeDetailsRoute = "/storeDetails";
+  static const String onBoardingRoute = "/onBoarding";
 }
 
 class RouteGenerator {
@@ -26,6 +28,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.registerRoute:
         return MaterialPageRoute(builder: (_) => const RegisterView());
+              case Routes.onBoardingRoute:
+        return MaterialPageRoute(builder: (_) => const OnBoarding());
       case Routes.forgetpasswordRoute:
         return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
       case Routes.mainRoute:
