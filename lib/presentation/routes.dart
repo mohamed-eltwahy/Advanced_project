@@ -1,8 +1,8 @@
-import 'package:advanced_tips/presentation/modules/auth/login/login.dart';
-import 'package:advanced_tips/presentation/modules/auth/register/register.dart';
-import 'package:advanced_tips/presentation/modules/on_boarding/on_boarding.dart';
-import 'package:advanced_tips/presentation/modules/splash/splash.dart';
-import 'package:advanced_tips/presentation/shared/resources/strings.dart';
+import 'modules/auth/login/login.dart';
+import 'modules/auth/register/register.dart';
+import 'modules/on_boarding/view/on_boarding.dart';
+import 'modules/splash/splash.dart';
+import 'shared/resources/strings.dart';
 import 'package:flutter/material.dart';
 
 import 'modules/auth/forget_pass/forget_pass.dart';

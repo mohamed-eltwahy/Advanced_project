@@ -1,12 +1,14 @@
-import 'package:advanced_tips/presentation/shared/resources/colors.dart';
-import 'package:advanced_tips/presentation/shared/resources/fonts.dart';
-import 'package:advanced_tips/presentation/shared/resources/styles.dart';
-import 'package:advanced_tips/presentation/shared/resources/values.dart';
+import 'colors.dart';
+import 'fonts.dart';
+import 'styles.dart';
+import 'values.dart';
 import 'package:flutter/material.dart';
 
 ThemeData getApplicationTheme() {
+  
   return ThemeData(
     // main colors
+    
     primaryColor: ColorManager.primary,
     primaryColorLight: ColorManager.lightPrimary,
     primaryColorDark: ColorManager.darkPrimary,
@@ -46,14 +48,28 @@ ThemeData getApplicationTheme() {
       ),
     ),
     // text theme
-    textTheme: TextTheme(
-        headline1: getSemiBoldStyle(
+    // textTheme: TextTheme(
+    //     displayLarge: getSemiBoldStyle(
+    //         color: ColorManager.darkGrey, fontSize: FontSize.s16),
+    //           headlineMedium: getRegularStyle(
+    //         color: ColorManager.darkGrey, fontSize: FontSize.s14),
+    //     headline1: getSemiBoldStyle(
+    //         color: ColorManager.darkGrey, fontSize: FontSize.s16),
+    //     subtitle1: getMediumStyle(
+    //         color: ColorManager.lightGrey, fontSize: FontSize.s14),
+    //     caption: getRegularStyle(color: ColorManager.grey1),
+    //     bodyText1: getRegularStyle(color: ColorManager.grey)),
+textTheme: TextTheme(
+        displayLarge: getSemiBoldStyle(
             color: ColorManager.darkGrey, fontSize: FontSize.s16),
-        subtitle1: getMediumStyle(
+        headlineLarge: getSemiBoldStyle(
+            color: ColorManager.darkGrey, fontSize: FontSize.s16),
+        headlineMedium: getRegularStyle(
+            color: ColorManager.darkGrey, fontSize: FontSize.s14),
+        titleMedium: getMediumStyle(
             color: ColorManager.lightGrey, fontSize: FontSize.s14),
-        caption: getRegularStyle(color: ColorManager.grey1),
-        bodyText1: getRegularStyle(color: ColorManager.grey)),
-
+        bodyLarge: getRegularStyle(color: ColorManager.grey1),
+        bodySmall: getRegularStyle(color: ColorManager.grey)),
     // input decoration theme (text form field)
         inputDecorationTheme: InputDecorationTheme(
         // content padding

@@ -1,12 +1,12 @@
 
-import 'package:advanced_tips/presentation/routes.dart';
-import 'package:advanced_tips/presentation/shared/resources/theme.dart';
+import '../presentation/routes.dart';
+import '../presentation/shared/resources/theme.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatefulWidget {
-  MyApp._internal();
+  const MyApp._internal();
 
-  static final MyApp _instance = MyApp._internal();
+  static const MyApp _instance =  MyApp._internal();
 
   factory MyApp() => _instance;
   @override

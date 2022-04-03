@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:advanced_tips/presentation/shared/resources/assets.dart';
 import 'package:flutter/material.dart';
 
 import '../../routes.dart';
+import '../../shared/resources/assets.dart';
 import '../../shared/resources/colors.dart';
 
 class SplashView extends StatefulWidget {
