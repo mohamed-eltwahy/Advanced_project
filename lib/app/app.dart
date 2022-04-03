@@ -1,6 +1,6 @@
 
+import '../presentation/resources/theme.dart';
 import '../presentation/routes.dart';
-import '../presentation/shared/resources/theme.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatefulWidget {

@@ -1,8 +1,9 @@
+import 'package:advanced_tips/presentation/resources/strings.dart';
+
 import 'modules/auth/login/login.dart';
 import 'modules/auth/register/register.dart';
 import 'modules/on_boarding/view/on_boarding.dart';
 import 'modules/splash/splash.dart';
-import 'shared/resources/strings.dart';
 import 'package:flutter/material.dart';
 
 import 'modules/auth/forget_pass/forget_pass.dart';
