@@ -1,5 +1,6 @@
 
-import '../../../../domain/onboarding_model.dart';
+import 'package:advanced_tips/domain/model/onboarding_model.dart';
+
 import '../../../resources/assets.dart';
 import '../../../resources/colors.dart';
 import '../../../resources/strings.dart';
