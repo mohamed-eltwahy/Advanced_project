@@ -18,7 +18,9 @@ dependencies:
   flutter_svg: ^1.0.3
   internet_connection_checker: ^0.0.1+3
   json_serializable: ^6.1.5
+  pretty_dio_logger: ^1.1.1
   retrofit: ^3.0.1+1
+  shared_preferences: ^2.0.13
   smooth_page_indicator: ^1.0.0+2
 
 dev_dependencies:
