@@ -84,13 +84,13 @@ textTheme: TextTheme(
         // enabled border style
         enabledBorder: OutlineInputBorder(
             borderSide:
-                BorderSide(color: ColorManager.primary, width: AppValuesSize.s1_5),
+                BorderSide(color: ColorManager.grey, width: AppValuesSize.s1_5),
             borderRadius: const BorderRadius.all(Radius.circular(AppValuesSize.s8),),),
 
         // focused border style
         focusedBorder: OutlineInputBorder(
             borderSide:
-                BorderSide(color: ColorManager.grey, width: AppValuesSize.s1_5),
+                BorderSide(color: ColorManager.primary, width: AppValuesSize.s1_5),
             borderRadius: const BorderRadius.all(Radius.circular(AppValuesSize.s8),),),
 
         // error border style

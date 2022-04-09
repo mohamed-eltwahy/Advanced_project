@@ -1,11 +1,10 @@
+import 'package:advanced_tips/presentation/modules/auth/login/view/login.dart';
 import 'package:advanced_tips/presentation/resources/strings.dart';
 
-import 'modules/auth/login/login.dart';
 import 'modules/auth/register/register.dart';
 import 'modules/on_boarding/view/on_boarding.dart';
 import 'modules/splash/splash.dart';
 import 'package:flutter/material.dart';
-
 import 'modules/auth/forget_pass/forget_pass.dart';
 import 'modules/main_view/main_view.dart';
 import 'modules/store_details/store_details.dart';

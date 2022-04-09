@@ -5,6 +5,13 @@ class AppStrings {
   static String onBoarding3 = "SEE THE BEST COURSE #3";
   static String onBoarding4 = "SEE THE BEST COURSE #4";
   static String skip = 'SKIP';
+    static const username = "Username";
+  static const password = "Password";
+  static const usernameError = "Please enter your userName";
+  static const passwordError = "Please enter your password";
+  static const login = "Login";
+  static const forgetPassword = "Forget password";
+  static const registerText = "Not a member ? Sign up";
 
   static String onBoardingsubTitle1 =
       "Tut app is an awesome flutter application using clean architecture #1";
