@@ -1,3 +1,4 @@
+import 'package:advanced_tips/app/di.dart';
 import 'package:advanced_tips/presentation/modules/auth/login/viewmodel/login_viewmodel.dart';
 import 'package:advanced_tips/presentation/resources/strings.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final LoginViewModel _loginViewModel = LoginViewModel();
+  final LoginViewModel _loginViewModel = instance<LoginViewModel>();
 
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();

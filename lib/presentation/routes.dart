@@ -1,6 +1,7 @@
 import 'package:advanced_tips/presentation/modules/auth/login/view/login.dart';
 import 'package:advanced_tips/presentation/resources/strings.dart';
 
+import '../app/di.dart';
 import 'modules/auth/register/register.dart';
 import 'modules/on_boarding/view/on_boarding.dart';
 import 'modules/splash/splash.dart';
@@ -25,10 +26,11 @@ class RouteGenerator {
       case Routes.splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashView());
       case Routes.loginRoute:
+        initLoginModule();
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.registerRoute:
         return MaterialPageRoute(builder: (_) => const RegisterView());
-              case Routes.onBoardingRoute:
+      case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) => const OnBoarding());
       case Routes.forgetpasswordRoute:
         return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
