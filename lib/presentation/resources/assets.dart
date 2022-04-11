@@ -12,3 +12,10 @@ class AssetsManaget {
 }
 
 const String imagepath = "assets/images";
+const String jsonpath = "assets/json";
+
+class JsonAssets {
+  static const String loading = "$jsonpath/loading.json";
+  static const String error = "$jsonpath/error.json";
+  static const String empty = "$jsonpath/empty.json";
+}
