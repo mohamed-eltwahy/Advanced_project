@@ -16,6 +16,9 @@ class AppStrings {
     static const retryAgain = "Retry again";
   static const ok = "Ok";
   static const empty = "No Data";
+    static const String emailHint = 'Email';
+  static const String invalidEmail = "Invalid Email";
+  static const String resetPassword = "Reset Password";
 
   static String onBoardingsubTitle1 =
       "Tut app is an awesome flutter application using clean architecture #1";

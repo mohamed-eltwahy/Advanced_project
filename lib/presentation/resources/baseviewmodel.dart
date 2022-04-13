@@ -7,12 +7,12 @@ abstract class BaseViewModel extends BaseViewModelInputs
   final StreamController _inputStreamController =
       StreamController<FlowState>.broadcast();
 
-      @override
+  @override
   Sink get inputState => _inputStreamController.sink;
 
-
   @override
-  Stream<FlowState> get outputState => _inputStreamController.stream.map<FlowState>((event) => event);
+  Stream<FlowState> get outputState =>
+      _inputStreamController.stream.map<FlowState>((event) => event);
 
   @override
   void dispose() {
@@ -30,5 +30,4 @@ abstract class BaseViewModelInputs {
 
 abstract class BaseviewModelOutput {
   Stream<FlowState> get outputState;
-
 }
