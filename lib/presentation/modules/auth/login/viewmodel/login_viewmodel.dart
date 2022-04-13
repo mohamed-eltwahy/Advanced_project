@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:advanced_tips/presentation/common/state_renderer/state_renderer.dart';
+import 'package:advanced_tips/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:advanced_tips/presentation/resources/baseviewmodel.dart';
 
 import '../../../../../domain/usecase/login_usecase.dart';
@@ -16,20 +18,25 @@ class LoginViewModel extends BaseViewModel
   final StreamController _areAllInputsValid =
       StreamController<void>.broadcast();
 
+  final StreamController isUserLoggedInSuccessfullstreamController =
+      StreamController<bool>();
+
   var loginObject = LoginObject("", "");
   final LoginUseCase _loginUseCase;
   LoginViewModel(this._loginUseCase);
 
   @override
   void dispose() {
+    super.dispose();
     _userNameStreamController.close();
     _passwordStreamController.close();
     _areAllInputsValid.close();
+    isUserLoggedInSuccessfullstreamController.close();
   }
 
   @override
   void start() {
-    // TODO: implement start
+    inputState.add(ContentState());
   }
 
   @override
@@ -61,9 +68,21 @@ class LoginViewModel extends BaseViewModel
 
   @override
   login() async {
+    inputState.add(
+        LoadingState(stateRendererType: StateRendererType.popupLoadingState));
     (await _loginUseCase.execute(
             LoginUseCaseInput(loginObject.userName, loginObject.Password)))
-        .fold((l) => {log(l.message)}, (r) => {log(r.customer!.name)});
+        .fold(
+            (l) => {
+                  inputState.add(
+                      ErrorState(StateRendererType.popupErrorState, l.message))
+                },
+            (r) {inputState.add(ContentState());
+
+            isUserLoggedInSuccessfullstreamController.add(true);
+            
+            
+            });
   }
 
   @override

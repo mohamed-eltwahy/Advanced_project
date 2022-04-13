@@ -1,4 +1,5 @@
-
+import 'package:advanced_tips/app/app_prefs.dart';
+import 'package:advanced_tips/app/di.dart';
 import 'package:advanced_tips/domain/model/onboarding_model.dart';
 
 import '../../../resources/assets.dart';
@@ -24,7 +25,10 @@ class _OnBoardingState extends State<OnBoarding> {
 
   final OnBoardingViewModel _onBoardingViewModel = OnBoardingViewModel();
 
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+
   _bind() {
+    _appPreferences.setOnBoardingScreenViewed();
     _onBoardingViewModel.start();
   }
 
@@ -64,7 +68,7 @@ class _OnBoardingState extends State<OnBoarding> {
               _onBoardingViewModel.onPageChanged(index);
             },
             itemBuilder: (context, index) {
-              return OnBoardingPage( sliderViewObject.sliderObject);
+              return OnBoardingPage(sliderViewObject.sliderObject);
               // return onboarding page
             }),
         bottomSheet: Container(
@@ -94,7 +98,7 @@ class _OnBoardingState extends State<OnBoarding> {
     }
   }
 
-  Widget _getBottomSheetWidget(SliderViewObject sliderViewObject ) {
+  Widget _getBottomSheetWidget(SliderViewObject sliderViewObject) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -125,7 +129,7 @@ class _OnBoardingState extends State<OnBoarding> {
             for (int i = 0; i < sliderViewObject.numsOfSlides; i++)
               Padding(
                 padding: const EdgeInsets.all(AppPadding.p8),
-                child: _getProperCircle(i,sliderViewObject.currentIndex),
+                child: _getProperCircle(i, sliderViewObject.currentIndex),
               )
           ],
         ),
@@ -148,7 +152,7 @@ class _OnBoardingState extends State<OnBoarding> {
     );
   }
 
-  Widget _getProperCircle(int index,int currentindex) {
+  Widget _getProperCircle(int index, int currentindex) {
     if (index == currentindex) {
       return SvgPicture.asset(AssetsManaget.hollowCircleIc);
     } else {

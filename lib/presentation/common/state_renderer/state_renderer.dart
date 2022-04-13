@@ -67,8 +67,7 @@ class StateRenderer extends StatelessWidget {
             [_getAnimatedImage(JsonAssets.empty), _getMessage(message)]);
       case StateRendererType.contentState:
         return Container();
-      default:
-        return Container();
+     
     }
   }
 
