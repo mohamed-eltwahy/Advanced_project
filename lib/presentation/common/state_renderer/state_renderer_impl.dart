@@ -1,3 +1,4 @@
+import 'package:advanced_tips/app/consts.dart';
 import 'package:advanced_tips/presentation/common/state_renderer/state_renderer.dart';
 import 'package:advanced_tips/presentation/resources/strings.dart';
 import 'package:flutter/material.dart';
@@ -61,6 +62,19 @@ class EmptyState extends FlowState {
       StateRendererType.fullScreenEmptyState;
 }
 
+//success
+class SuccessState extends FlowState {
+  String message;
+
+  SuccessState(this.message);
+
+  @override
+  String getMessage() => message;
+
+  @override
+  StateRendererType getStateRendererType() => StateRendererType.popupSuccess;
+}
+
 extension FlowStateExtension on FlowState {
   Widget getScreenWidget(BuildContext context, Widget contentScreenWidget,
       Function retryActionFunction) {
@@ -108,6 +122,17 @@ extension FlowStateExtension on FlowState {
           dismissDialog(context);
           return contentScreenWidget;
         }
+      case SuccessState:
+        {
+          // i should check if we are showing loading popup to remove it before showing success popup
+          dismissDialog(context);
+
+          // show popup
+          showPopup(context, StateRendererType.popupSuccess, getMessage(),
+              title: AppStrings.success);
+          // return content ui of the screen
+          return contentScreenWidget;
+        }
       default:
         {
           dismissDialog(context);
@@ -118,7 +143,8 @@ extension FlowStateExtension on FlowState {
 }
 
 showPopup(
-    BuildContext context, StateRendererType stateRendererType, String message) {
+    BuildContext context, StateRendererType stateRendererType, String message,
+    {String title = AppStrings.empty}) {
   WidgetsBinding.instance?.addPostFrameCallback((_) => showDialog(
       context: context,
       builder: (BuildContext context) => StateRenderer(
@@ -127,11 +153,11 @@ showPopup(
           retryActionFunction: () {})));
 }
 
-  _isCurrentDialogShowing(BuildContext context) =>
-      ModalRoute.of(context)?.isCurrent != true;
+_isCurrentDialogShowing(BuildContext context) =>
+    ModalRoute.of(context)?.isCurrent != true;
 
-  dismissDialog(BuildContext context) {
-    if (_isCurrentDialogShowing(context)) {
-      Navigator.of(context, rootNavigator: true).pop(true);
-    }
+dismissDialog(BuildContext context) {
+  if (_isCurrentDialogShowing(context)) {
+    Navigator.of(context, rootNavigator: true).pop(true);
   }
+}

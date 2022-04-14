@@ -6,4 +6,6 @@ import '../../data/network/requests.dart';
 
 abstract class Repository {
   Future<Either<Failure, Authontication>> login(LoginRequest loginRequest);
+
+  Future<Either<Failure, String>> forgetpass(String email);
 }

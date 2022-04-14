@@ -1,0 +1,11 @@
+1-response
+2-AppServiceClient in network
+3-mapper
+4-repository
+5-repository_impl ==> depend on 6-remote data source
+7-use case
+=============================
+ view model
+
+ Dependency injection to view object
+ 

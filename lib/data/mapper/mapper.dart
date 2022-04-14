@@ -1,4 +1,7 @@
+import 'package:advanced_tips/app/consts.dart';
+
 import '../../domain/model/models.dart';
+import '../response/forget_pass_response.dart';
 import '../response/responses.dart';
 import 'package:advanced_tips/app/extentions.dart';
 
@@ -18,6 +21,12 @@ extension ContactsResponseMapper on ContactsResponse? {
 
 extension AuthonticationResponseMapper on AuthonticationResponse? {
   Authontication toDomain() {
-    return Authontication(this?.customer.toDomain() , this?.contacts.toDomain());
+    return Authontication(this?.customer.toDomain(), this?.contacts.toDomain());
+  }
+}
+
+extension ForgotPasswordResponseMapper on ForgetResponse {
+  String toDomain() {
+    return support.orEmpty();
   }
 }

@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
 import '../../app/consts.dart';
+import '../response/forget_pass_response.dart';
 part 'app_api.g.dart';
 
 @RestApi(
@@ -15,5 +16,10 @@ abstract class AppServiceClient {
   Future<AuthonticationResponse> login(
     @Field("email") String email,
     @Field("password") String password,
+  );
+
+  @POST("/customer/forgetPassword")
+  Future<ForgetResponse> forgetPass(
+    @Field("email") String email,
   );
 }

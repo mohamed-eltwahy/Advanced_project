@@ -1,6 +1,9 @@
+import 'dart:js_util';
+
 import 'package:advanced_tips/presentation/modules/auth/forget_pass/forget_pass_view_model.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../app/di.dart';
 import '../../../resources/assets.dart';
 import '../../../resources/colors.dart';
 import '../../../resources/strings.dart';
@@ -14,16 +17,21 @@ class ForgotPasswordView extends StatefulWidget {
 }
 
 class _ForgotPasswordViewState extends State<ForgotPasswordView> {
-    final _formKey = GlobalKey<FormState>();
-    final ForgotPasswordViewModel _viewModel=ForgotPasswordViewModel();
-      final TextEditingController _emailTextEditingController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final ForgotPasswordViewModel _viewModel =
+      instance<ForgotPasswordViewModel>();
+  final TextEditingController _emailTextEditingController =
+      TextEditingController();
 
+  @override
+  void dispose() {
+    _viewModel.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body:_getContentWidget()
-    );
+    return Scaffold(body: _getContentWidget());
   }
 
   Widget _getContentWidget() {

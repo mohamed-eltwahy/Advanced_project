@@ -37,4 +37,24 @@ class RepositoryImpl implements Repository {
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, String>> forgetpass(String email) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _remoteDataSource.forgetPass(email);
+
+        if (response.status == ApiInternalStatus.Sucess) {
+          return Right(response.toDomain());
+        } else {
+          return Left(Failure(ApiInternalStatus.Failure,
+              response.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (e) {
+        return Left(ErrorHandler.handle(e).failure);
+      }
+    } else {
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
 }
