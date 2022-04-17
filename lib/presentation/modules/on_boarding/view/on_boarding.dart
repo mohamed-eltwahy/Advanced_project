@@ -1,35 +1,36 @@
-import 'package:advanced_tips/app/app_prefs.dart';
-import 'package:advanced_tips/app/di.dart';
-import 'package:advanced_tips/domain/model/onboarding_model.dart';
 
+import 'package:advanced_tips/presentation/modules/on_boarding/view_model/onboarding_viewmodel.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../../../../app/app_prefs.dart';
+import '../../../../app/di.dart';
+import '../../../../domain/model/onboarding_model.dart';
 import '../../../resources/assets.dart';
 import '../../../resources/colors.dart';
 import '../../../resources/strings.dart';
 import '../../../resources/values.dart';
 import '../../../routes.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-import '../view_model/onboarding_viewmodel.dart';
-
-class OnBoarding extends StatefulWidget {
-  const OnBoarding({Key? key}) : super(key: key);
+class OnBoardingView extends StatefulWidget {
+  const OnBoardingView({Key? key}) : super(key: key);
 
   @override
-  State<OnBoarding> createState() => _OnBoardingState();
+  _OnBoardingViewState createState() => _OnBoardingViewState();
 }
 
-class _OnBoardingState extends State<OnBoarding> {
+class _OnBoardingViewState extends State<OnBoardingView> {
   final PageController _pageController = PageController();
+  final OnBoardingViewModel _viewModel = OnBoardingViewModel();
+    final AppPreferences _appPreferences = instance<AppPreferences>();
 
-  final OnBoardingViewModel _onBoardingViewModel = OnBoardingViewModel();
-
-  final AppPreferences _appPreferences = instance<AppPreferences>();
 
   _bind() {
-    _appPreferences.setOnBoardingScreenViewed();
-    _onBoardingViewModel.start();
+        _appPreferences.setOnBoardingScreenViewed();
+
+    _viewModel.start();
   }
 
   @override
@@ -41,14 +42,13 @@ class _OnBoardingState extends State<OnBoarding> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<SliderViewObject>(
-      stream: _onBoardingViewModel.outputSiderViewObject,
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        return _getContentWidget(snapshot.data);
-      },
-    );
+        stream: _viewModel.outputSiderViewObject,
+        builder: (context, snapshot) {
+          return _getContentWidget(snapshot.data);
+        });
   }
 
-  Widget _getContentWidget(SliderViewObject sliderViewObject) {
+  Widget _getContentWidget(SliderViewObject? sliderViewObject) {
     if (sliderViewObject == null) {
       return Container();
     } else {
@@ -65,14 +65,13 @@ class _OnBoardingState extends State<OnBoarding> {
             controller: _pageController,
             itemCount: sliderViewObject.numsOfSlides,
             onPageChanged: (index) {
-              _onBoardingViewModel.onPageChanged(index);
+              _viewModel.onPageChanged(index);
             },
             itemBuilder: (context, index) {
               return OnBoardingPage(sliderViewObject.sliderObject);
-              // return onboarding page
             }),
         bottomSheet: Container(
-          color: ColorManager.primary,
+          color: ColorManager.white,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -89,6 +88,7 @@ class _OnBoardingState extends State<OnBoarding> {
                   ),
                 ),
               ),
+
               // widgets indicator and arrows
               _getBottomSheetWidget(sliderViewObject)
             ],
@@ -99,61 +99,66 @@ class _OnBoardingState extends State<OnBoarding> {
   }
 
   Widget _getBottomSheetWidget(SliderViewObject sliderViewObject) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        // left arrow
-        Padding(
-          padding: const EdgeInsets.all(AppPadding.p14),
-          child: GestureDetector(
-            child: SizedBox(
-              width: AppValuesSize.s20,
-              height: AppValuesSize.s20,
-              child: SvgPicture.asset(AssetsManaget.leftArrowIc),
-            ),
-            onTap: () {
-              // go to previous slide
-              _pageController.animateToPage(_onBoardingViewModel.goPrevious(),
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.bounceInOut);
-            },
-          ),
-        )
-
-// circle indicator
-
-        // right arrow
-        ,
-        Row(
-          children: [
-            for (int i = 0; i < sliderViewObject.numsOfSlides; i++)
-              Padding(
-                padding: const EdgeInsets.all(AppPadding.p8),
-                child: _getProperCircle(i, sliderViewObject.currentIndex),
-              )
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.all(AppPadding.p14),
-          child: GestureDetector(
+    return Container(
+      color: ColorManager.primary,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          // left arrow
+          Padding(
+            padding: const EdgeInsets.all(AppPadding.p14),
+            child: GestureDetector(
               child: SizedBox(
                 width: AppValuesSize.s20,
                 height: AppValuesSize.s20,
-                child: SvgPicture.asset(AssetsManaget.rightArrowIc),
+                child: SvgPicture.asset(AssetsManaget.leftArrowIc),
               ),
               onTap: () {
                 // go to previous slide
-                _pageController.animateToPage(_onBoardingViewModel.goNext(),
-                    duration: const Duration(milliseconds: 300),
+                _pageController.animateToPage(_viewModel.goPrevious(),
+                    duration: const Duration(
+                        milliseconds:5000),
                     curve: Curves.bounceInOut);
-              }),
-        ),
-      ],
+              },
+            ),
+          )
+
+// circle indicator
+
+          // right arrow
+          ,
+          Row(
+            children: [
+              for (int i = 0; i < sliderViewObject.numsOfSlides; i++)
+                Padding(
+                  padding: const EdgeInsets.all(AppPadding.p8),
+                  child: _getProperCircle(i, sliderViewObject.currentIndex),
+                )
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(AppPadding.p14),
+            child: GestureDetector(
+                child: SizedBox(
+                  width: AppValuesSize.s20,
+                  height: AppValuesSize.s20,
+                  child: SvgPicture.asset(AssetsManaget.rightArrowIc),
+                ),
+                onTap: () {
+                  // go to previous slide
+                  _pageController.animateToPage(_viewModel.goNext(),
+                      duration: const Duration(
+                          milliseconds:2000),
+                      curve: Curves.bounceInOut);
+                }),
+          )
+        ],
+      ),
     );
   }
 
-  Widget _getProperCircle(int index, int currentindex) {
-    if (index == currentindex) {
+  Widget _getProperCircle(int index, int currentIndex) {
+    if (index == currentIndex) {
       return SvgPicture.asset(AssetsManaget.hollowCircleIc);
     } else {
       return SvgPicture.asset(AssetsManaget.solidCircleIc);
@@ -162,7 +167,7 @@ class _OnBoardingState extends State<OnBoarding> {
 
   @override
   void dispose() {
-    _onBoardingViewModel.dispose();
+    _viewModel.dispose();
     super.dispose();
   }
 }

@@ -1,32 +1,27 @@
 import 'dart:async';
-
-import 'package:advanced_tips/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:advanced_tips/presentation/resources/baseviewmodel.dart';
 
 import '../../../../app/functions.dart';
 import '../../../../domain/usecase/forget_pass_usecase.dart';
 import '../../../common/state_renderer/state_renderer.dart';
+import '../../../common/state_renderer/state_renderer_impl.dart';
+
+
 
 class ForgotPasswordViewModel extends BaseViewModel
     with ForgotPasswordViewModelInput, ForgotPasswordViewModelOutput {
   final StreamController _emailStreamController =
-      StreamController<String>.broadcast();
-
+  StreamController<String>.broadcast();
   final StreamController _isAllInputValidStreamController =
-      StreamController<void>.broadcast();
+  StreamController<void>.broadcast();
+
   final ForgetPassUseCase _forgotPasswordUseCase;
 
   ForgotPasswordViewModel(this._forgotPasswordUseCase);
 
-  var email;
+  var email = "";
 
-  @override
-  void dispose() {
-    _emailStreamController.close();
-    _isAllInputValidStreamController.close();
-    super.dispose();
-  }
-
+  // input
   @override
   void start() {
     inputState.add(ContentState());
@@ -36,12 +31,19 @@ class ForgotPasswordViewModel extends BaseViewModel
   forgotPassword() async {
     inputState.add(
         LoadingState(stateRendererType: StateRendererType.popupLoadingState));
-    (await _forgotPasswordUseCase.execute(email)).fold(
-        (l) => {
-              inputState
-                  .add(ErrorState(StateRendererType.popupErrorState, l.message))
-            },
-        (r) => {inputState.add(SuccessState(r))});
+    (await _forgotPasswordUseCase.execute(email)).fold((failure) {
+      inputState.add(
+          ErrorState(StateRendererType.popupErrorState, failure.message));
+    }, (supportMessage) {
+      inputState.add(SuccessState(supportMessage));
+    });
+  }
+
+  @override
+  setEmail(String email) {
+    inputEmail.add(email);
+    this.email = email;
+    _validate();
   }
 
   @override
@@ -50,27 +52,28 @@ class ForgotPasswordViewModel extends BaseViewModel
   @override
   Sink get inputIsAllInputValid => _isAllInputValidStreamController.sink;
 
+  // output
+  @override
+  void dispose() {
+    _emailStreamController.close();
+    _isAllInputValidStreamController.close();
+  }
+
+  @override
+  Stream<bool> get outputIsEmailValid =>
+      _emailStreamController.stream.map((email) => isEmailValid(email));
+
   @override
   Stream<bool> get outputIsAllInputValid =>
       _isAllInputValidStreamController.stream
-          .map((event) => _isAllInputValid());
+          .map((isAllInputValid) => _isAllInputValid());
+
   _isAllInputValid() {
     return isEmailValid(email);
   }
 
   _validate() {
     inputIsAllInputValid.add(null);
-  }
-
-  @override
-  Stream<bool> get outputIsEmailValid =>
-      _emailStreamController.stream.map((event) => isEmailValid(event));
-
-  @override
-  setEmail(String email) {
-    inputEmail.add(email);
-    this.email = email;
-    _validate();
   }
 }
 
