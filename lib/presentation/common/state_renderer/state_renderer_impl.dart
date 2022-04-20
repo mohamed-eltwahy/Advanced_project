@@ -1,6 +1,6 @@
-import 'package:advanced_tips/app/consts.dart';
-import 'package:advanced_tips/presentation/common/state_renderer/state_renderer.dart';
-import 'package:advanced_tips/presentation/resources/strings.dart';
+import '../../../app/consts.dart';
+import 'state_renderer.dart';
+import '../../resources/strings.dart';
 import 'package:flutter/material.dart';
 
 abstract class FlowState {

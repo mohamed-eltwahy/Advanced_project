@@ -1,9 +1,9 @@
-import 'package:advanced_tips/app/consts.dart';
+import '../../app/consts.dart';
 
 import '../../domain/model/models.dart';
 import '../response/forget_pass_response.dart';
 import '../response/responses.dart';
-import 'package:advanced_tips/app/extentions.dart';
+import '../../app/extentions.dart';
 
 extension CustomerResponseMapper on CustomerResponse? {
   Customer toDomain() {

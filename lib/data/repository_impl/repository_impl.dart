@@ -1,12 +1,12 @@
-import 'package:advanced_tips/data/mapper/mapper.dart';
-import 'package:advanced_tips/data/network/error_handler.dart';
+import '../mapper/mapper.dart';
+import '../network/error_handler.dart';
 import 'package:dartz/dartz.dart';
 
-import 'package:advanced_tips/data/data_source/remote_data_source.dart';
-import 'package:advanced_tips/data/network/failure.dart';
-import 'package:advanced_tips/data/network/network_info.dart';
-import 'package:advanced_tips/data/network/requests.dart';
-import 'package:advanced_tips/domain/model/models.dart';
+import '../data_source/remote_data_source.dart';
+import '../network/failure.dart';
+import '../network/network_info.dart';
+import '../network/requests.dart';
+import '../../domain/model/models.dart';
 
 import '../../domain/repository/repository.dart';
 
@@ -43,6 +43,27 @@ class RepositoryImpl implements Repository {
     if (await _networkInfo.isConnected) {
       try {
         final response = await _remoteDataSource.forgetPass(email);
+
+        if (response.status == ApiInternalStatus.Sucess) {
+          return Right(response.toDomain());
+        } else {
+          return Left(Failure(ApiInternalStatus.Failure,
+              response.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (e) {
+        return Left(ErrorHandler.handle(e).failure);
+      }
+    } else {
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Authontication>> register(
+      RegisterRequest registerRequest) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _remoteDataSource.register(registerRequest);
 
         if (response.status == ApiInternalStatus.Sucess) {
           return Right(response.toDomain());

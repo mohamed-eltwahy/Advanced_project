@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:advanced_tips/presentation/resources/baseviewmodel.dart';
+import '../../../../resources/baseviewmodel.dart';
 
 import '../../../../../domain/usecase/login_usecase.dart';
 import '../../../../common/freezed_data_clases.dart';

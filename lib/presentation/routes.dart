@@ -1,5 +1,5 @@
-import 'package:advanced_tips/presentation/modules/auth/login/view/login.dart';
-import 'package:advanced_tips/presentation/resources/strings.dart';
+import 'modules/auth/login/view/login.dart';
+import 'resources/strings.dart';
 
 import '../app/di.dart';
 import 'modules/auth/register/register.dart';
@@ -29,6 +29,7 @@ class RouteGenerator {
         initLoginModule();
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.registerRoute:
+        initRegisterModule();
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) => const OnBoardingView());

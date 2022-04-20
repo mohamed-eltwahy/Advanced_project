@@ -1,5 +1,5 @@
 
-import 'package:advanced_tips/presentation/modules/on_boarding/view_model/onboarding_viewmodel.dart';
+import '../view_model/onboarding_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';

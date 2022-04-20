@@ -1,4 +1,4 @@
-import 'package:advanced_tips/data/network/failure.dart';
+import 'failure.dart';
 import 'package:dio/dio.dart';
 
 

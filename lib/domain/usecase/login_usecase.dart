@@ -1,10 +1,10 @@
-import 'package:advanced_tips/data/network/requests.dart';
-import 'package:advanced_tips/domain/repository/repository.dart';
+import '../../data/network/requests.dart';
+import '../repository/repository.dart';
 import 'package:dartz/dartz.dart';
 
-import 'package:advanced_tips/data/network/failure.dart';
-import 'package:advanced_tips/domain/model/models.dart';
-import 'package:advanced_tips/domain/usecase/base_usecase.dart';
+import '../../data/network/failure.dart';
+import '../model/models.dart';
+import 'base_usecase.dart';
 
 class LoginUseCase implements BaseUseCase<LoginUseCaseInput, Authontication> {
   final Repository _repository;

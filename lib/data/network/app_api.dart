@@ -1,4 +1,4 @@
-import 'package:advanced_tips/data/response/responses.dart';
+import '../response/responses.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
@@ -21,5 +21,15 @@ abstract class AppServiceClient {
   @POST("/customer/forgetPassword")
   Future<ForgetResponse> forgetPass(
     @Field("email") String email,
+  );
+
+  @POST("/customer/register")
+  Future<AuthonticationResponse> register(
+    @Field("user_name") String userName,
+    @Field("country_mobile_code") String countryMobileCode,
+    @Field("mobile_number") String mobileNumber,
+    @Field("email") String email,
+    @Field("password") String password,
+    @Field("profile_picture") String profilePicture,
   );
 }

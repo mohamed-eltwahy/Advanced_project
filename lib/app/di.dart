@@ -1,12 +1,16 @@
-import 'package:advanced_tips/app/app_prefs.dart';
-import 'package:advanced_tips/data/data_source/remote_data_source.dart';
-import 'package:advanced_tips/data/network/app_api.dart';
-import 'package:advanced_tips/data/network/dio_factory.dart';
-import 'package:advanced_tips/data/network/network_info.dart';
-import 'package:advanced_tips/data/repository_impl/repository_impl.dart';
-import 'package:advanced_tips/domain/repository/repository.dart';
-import 'package:advanced_tips/domain/usecase/login_usecase.dart';
-import 'package:advanced_tips/presentation/modules/auth/login/viewmodel/login_viewmodel.dart';
+import 'package:image_picker/image_picker.dart';
+
+import '../domain/usecase/register_usecase.dart';
+import '../presentation/modules/auth/register/register_viewmodel.dart';
+import 'app_prefs.dart';
+import '../data/data_source/remote_data_source.dart';
+import '../data/network/app_api.dart';
+import '../data/network/dio_factory.dart';
+import '../data/network/network_info.dart';
+import '../data/repository_impl/repository_impl.dart';
+import '../domain/repository/repository.dart';
+import '../domain/usecase/login_usecase.dart';
+import '../presentation/modules/auth/login/viewmodel/login_viewmodel.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -58,5 +62,15 @@ forgetpassModule() {
         () => ForgetPassUseCase(instance()));
     instance.registerFactory<ForgotPasswordViewModel>(
         () => ForgotPasswordViewModel(instance()));
+  }
+}
+
+initRegisterModule() {
+  if (!GetIt.I.isRegistered<RegisterUseCase>()) {
+    instance
+        .registerFactory<RegisterUseCase>(() => RegisterUseCase(instance()));
+    instance.registerFactory<RegisterViewModel>(
+        () => RegisterViewModel(instance()));
+    instance.registerFactory<ImagePicker>(() => ImagePicker());
   }
 }

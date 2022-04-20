@@ -1,5 +1,5 @@
 
-import 'package:advanced_tips/presentation/modules/auth/forget_pass/forget_pass_view_model.dart';
+import 'forget_pass_view_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../app/di.dart';

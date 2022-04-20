@@ -9,6 +9,7 @@ class AssetsManaget {
   static const String solidCircleIc = "$imagepath/solid_circle_ic.svg";
   static const String leftArrowIc = "$imagepath/left_arrow_ic.svg";
   static const String rightArrowIc = "$imagepath/right_arrow_ic.svg";
+  static const String photoCameraIc = "$imagepath/photo-camera.svg";
 }
 
 const String imagepath = "assets/images";

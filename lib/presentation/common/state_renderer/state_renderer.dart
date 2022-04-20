@@ -1,5 +1,5 @@
-import 'package:advanced_tips/presentation/resources/colors.dart';
-import 'package:advanced_tips/presentation/resources/styles.dart';
+import '../../resources/colors.dart';
+import '../../resources/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

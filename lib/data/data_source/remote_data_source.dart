@@ -1,11 +1,12 @@
-import 'package:advanced_tips/data/network/app_api.dart';
-import 'package:advanced_tips/data/network/requests.dart';
-import 'package:advanced_tips/data/response/forget_pass_response.dart';
-import 'package:advanced_tips/data/response/responses.dart';
+import '../network/app_api.dart';
+import '../network/requests.dart';
+import '../response/forget_pass_response.dart';
+import '../response/responses.dart';
 
 abstract class RemoteDataSource {
   Future<AuthonticationResponse> login(LoginRequest loginRequest);
   Future<ForgetResponse> forgetPass(String email);
+  Future<AuthonticationResponse> register(RegisterRequest registerRequest);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -22,5 +23,19 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<ForgetResponse> forgetPass(String email) async {
     return await _appServiceClient.forgetPass(email);
+  }
+
+  @override
+  Future<AuthonticationResponse> register(
+      RegisterRequest registerRequest) async {
+    return await _appServiceClient.register(
+        registerRequest.userName,
+        registerRequest.countryMobileCode,
+        registerRequest.mobileNumber,
+        registerRequest.email,
+        registerRequest.password,
+        ""
+        // registerRequest.profilePicture
+        );
   }
 }

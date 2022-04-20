@@ -1,6 +1,5 @@
 
 
-import 'package:advanced_tips/presentation/modules/auth/login/viewmodel/login_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
@@ -12,6 +11,7 @@ import '../../../../resources/colors.dart';
 import '../../../../resources/strings.dart';
 import '../../../../resources/values.dart';
 import '../../../../routes.dart';
+import '../viewmodel/login_viewmodel.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);

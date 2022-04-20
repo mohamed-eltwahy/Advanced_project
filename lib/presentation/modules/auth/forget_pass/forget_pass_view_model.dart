@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'package:advanced_tips/presentation/resources/baseviewmodel.dart';
 
 import '../../../../app/functions.dart';
 import '../../../../domain/usecase/forget_pass_usecase.dart';
 import '../../../common/state_renderer/state_renderer.dart';
 import '../../../common/state_renderer/state_renderer_impl.dart';
+import '../../../resources/baseviewmodel.dart';
 
 
 
