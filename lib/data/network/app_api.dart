@@ -1,3 +1,4 @@
+import '../response/home_respose.dart';
 import '../response/responses.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
@@ -32,4 +33,7 @@ abstract class AppServiceClient {
     @Field("password") String password,
     @Field("profile_picture") String profilePicture,
   );
+
+   @GET("/home")
+  Future<HomeResponse> getHomeData();
 }

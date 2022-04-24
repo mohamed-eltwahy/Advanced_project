@@ -31,6 +31,10 @@ class AppStrings {
   static const String passwordInvalid = "Password should be at least 6 chars";
   static const String alreadyHaveAccount = "Already have an account ? Login";
   static const register = "Register";
+  static const home = "Home Page";
+  static const notification = "Notification Page";
+  static const settings = "Settings Page";
+  static const search = "Search Page";
 
   static String onBoardingsubTitle1 =
       "Tut app is an awesome flutter application using clean architecture #1";

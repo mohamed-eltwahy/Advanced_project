@@ -1,3 +1,5 @@
+import 'package:advanced_tips/data/response/home_respose.dart';
+
 import '../network/app_api.dart';
 import '../network/requests.dart';
 import '../response/forget_pass_response.dart';
@@ -7,6 +9,7 @@ abstract class RemoteDataSource {
   Future<AuthonticationResponse> login(LoginRequest loginRequest);
   Future<ForgetResponse> forgetPass(String email);
   Future<AuthonticationResponse> register(RegisterRequest registerRequest);
+  Future<HomeResponse> getDataHome();
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -37,5 +40,11 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         ""
         // registerRequest.profilePicture
         );
+  }
+
+  @override
+  Future<HomeResponse> getDataHome()async {
+    return await _appServiceClient.getHomeData();
+ 
   }
 }

@@ -1,3 +1,6 @@
+import 'package:advanced_tips/data/mapper/home_mapper.dart';
+import 'package:advanced_tips/domain/model/home_model.dart';
+
 import '../mapper/mapper.dart';
 import '../network/error_handler.dart';
 import 'package:dartz/dartz.dart';
@@ -75,6 +78,29 @@ class RepositoryImpl implements Repository {
         return Left(ErrorHandler.handle(e).failure);
       }
     } else {
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, HomeObject>> getHomeData() async {
+    if (await _networkInfo.isConnected) {
+      // its connected to internet, its safe to call API
+      try {
+        final response = await _remoteDataSource.getDataHome();
+
+        if (response.status == ApiInternalStatus.Sucess) {
+          return Right(response.toDomain());
+        } else {
+          return Left(Failure(ApiInternalStatus.Failure,
+              response.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      // return internet connection error
+      // return either left
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }

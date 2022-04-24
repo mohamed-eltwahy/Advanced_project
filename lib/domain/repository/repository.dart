@@ -1,3 +1,4 @@
+import '../model/home_model.dart';
 import '../model/models.dart';
 import 'package:dartz/dartz.dart';
 
@@ -10,5 +11,6 @@ abstract class Repository {
   Future<Either<Failure, String>> forgetpass(String email);
 
   Future<Either<Failure, Authontication>> register(RegisterRequest registerRequest);
+  Future<Either<Failure, HomeObject>> getHomeData();
 
 }
