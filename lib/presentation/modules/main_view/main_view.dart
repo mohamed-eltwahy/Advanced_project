@@ -1,7 +1,7 @@
-import 'package:advanced_tips/presentation/modules/main_view/pages/home_page.dart';
-import 'package:advanced_tips/presentation/modules/main_view/pages/notification_page.dart';
-import 'package:advanced_tips/presentation/modules/main_view/pages/search_page.dart';
-import 'package:advanced_tips/presentation/modules/main_view/pages/settings_page.dart';
+import 'package:advanced_tips/presentation/modules/main_view/pages/home/home_page.dart';
+import 'package:advanced_tips/presentation/modules/main_view/pages/notifications/notification_page.dart';
+import 'package:advanced_tips/presentation/modules/main_view/pages/search/search_page.dart';
+import 'package:advanced_tips/presentation/modules/main_view/settings/settings_page.dart';
 import 'package:advanced_tips/presentation/resources/colors.dart';
 import 'package:advanced_tips/presentation/resources/strings.dart';
 import 'package:advanced_tips/presentation/resources/values.dart';

@@ -10,6 +10,7 @@ environment:
 
 dependencies:
   analyzer: ^3.4.1
+  carousel_slider: ^4.1.1
   country_code_picker: ^2.0.2
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
@@ -25,6 +26,7 @@ dependencies:
   lottie: ^1.2.2
   pretty_dio_logger: ^1.1.1
   retrofit: ^3.0.1+1
+  rxdart: ^0.27.3
   shared_preferences: ^2.0.13
   smooth_page_indicator: ^1.0.0+2
 

@@ -4,20 +4,20 @@ import '../../app/extentions.dart';
 
 extension ServiceResponseMapper on ServiceResponse {
   Service toDomain() {
-    return Service(id.orEmpty(), title.orEmpty(), image.orEmpty());
+    return Service(id.orZero(), title.orEmpty(), image.orEmpty());
   }
 }
 
 extension StoreResponseMapper on StoreResponse {
   Store toDomain() {
-    return Store(id.orEmpty(), title.orEmpty(), image.orEmpty());
+    return Store(id.orZero(), title.orEmpty(), image.orEmpty());
   }
 }
 
 extension BannerResponseMapper on BannersResponse {
   BannerAd toDomain() {
     return BannerAd(
-        id.orEmpty(), title.orEmpty(), image.orEmpty(), link.orEmpty());
+        id.orZero(), title.orEmpty(), image.orEmpty(), link.orEmpty());
   }
 }
 

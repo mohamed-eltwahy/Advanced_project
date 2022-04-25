@@ -35,6 +35,8 @@ class AppStrings {
   static const notification = "Notification Page";
   static const settings = "Settings Page";
   static const search = "Search Page";
+    static const services = "Services";
+  static const stores = "Stores";
 
   static String onBoardingsubTitle1 =
       "Tut app is an awesome flutter application using clean architecture #1";

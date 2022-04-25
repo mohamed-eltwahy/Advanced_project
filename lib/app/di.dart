@@ -1,7 +1,9 @@
 import 'package:image_picker/image_picker.dart';
 
+import '../domain/usecase/home_usecase.dart';
 import '../domain/usecase/register_usecase.dart';
 import '../presentation/modules/auth/register/register_viewmodel.dart';
+import '../presentation/modules/main_view/pages/home/home_viewmodel.dart';
 import 'app_prefs.dart';
 import '../data/data_source/remote_data_source.dart';
 import '../data/network/app_api.dart';
@@ -72,5 +74,12 @@ initRegisterModule() {
     instance.registerFactory<RegisterViewModel>(
         () => RegisterViewModel(instance()));
     instance.registerFactory<ImagePicker>(() => ImagePicker());
+  }
+}
+
+initHomeModule() {
+  if (!GetIt.I.isRegistered<HomeUseCase>()) {
+    instance.registerFactory<HomeUseCase>(() => HomeUseCase(instance()));
+    instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance()));
   }
 }

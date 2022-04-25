@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../resources/strings.dart';
+import '../../../../resources/strings.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
