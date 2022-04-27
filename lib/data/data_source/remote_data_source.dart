@@ -4,12 +4,15 @@ import '../network/app_api.dart';
 import '../network/requests.dart';
 import '../response/forget_pass_response.dart';
 import '../response/responses.dart';
+import '../response/store_details_response.dart';
 
 abstract class RemoteDataSource {
   Future<AuthonticationResponse> login(LoginRequest loginRequest);
   Future<ForgetResponse> forgetPass(String email);
   Future<AuthonticationResponse> register(RegisterRequest registerRequest);
   Future<HomeResponse> getDataHome();
+    Future<StoreDetailsResponse> getStoreDetails();
+
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -46,5 +49,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<HomeResponse> getDataHome()async {
     return await _appServiceClient.getHomeData();
  
+  }
+
+  @override
+  Future<StoreDetailsResponse> getStoreDetails() async {
+    return await _appServiceClient.getStoreDetails();
   }
 }

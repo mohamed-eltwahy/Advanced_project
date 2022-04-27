@@ -1,9 +1,12 @@
 import 'package:image_picker/image_picker.dart';
 
+import '../data/data_source/local_data_source.dart';
 import '../domain/usecase/home_usecase.dart';
 import '../domain/usecase/register_usecase.dart';
+import '../domain/usecase/store_details_usecase.dart';
 import '../presentation/modules/auth/register/register_viewmodel.dart';
 import '../presentation/modules/main_view/pages/home/home_viewmodel.dart';
+import '../presentation/modules/store_details/store_details_viewmodel.dart';
 import 'app_prefs.dart';
 import '../data/data_source/remote_data_source.dart';
 import '../data/network/app_api.dart';
@@ -46,9 +49,13 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<RemoteDataSource>(
       () => RemoteDataSourceImpl(instance()));
 
+        //local data source
+  instance.registerLazySingleton<LocalDataSource>(
+      () =>LocalDataSourceImpl());
+
   //repository
   instance.registerLazySingleton<Repository>(
-      () => RepositoryImpl(instance(), instance()));
+      () => RepositoryImpl(instance(), instance(),instance()));
 }
 
 initLoginModule() {
@@ -81,5 +88,14 @@ initHomeModule() {
   if (!GetIt.I.isRegistered<HomeUseCase>()) {
     instance.registerFactory<HomeUseCase>(() => HomeUseCase(instance()));
     instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance()));
+  }
+}
+
+initStoreDetailsModule() {
+  if (!GetIt.I.isRegistered<StoreDetailsUseCase>()) {
+    instance.registerFactory<StoreDetailsUseCase>(
+        () => StoreDetailsUseCase(instance()));
+    instance.registerFactory<StoreDetailsViewModel>(
+        () => StoreDetailsViewModel(instance()));
   }
 }

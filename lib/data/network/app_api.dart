@@ -5,6 +5,7 @@ import 'package:retrofit/http.dart';
 
 import '../../app/consts.dart';
 import '../response/forget_pass_response.dart';
+import '../response/store_details_response.dart';
 part 'app_api.g.dart';
 
 @RestApi(
@@ -36,4 +37,6 @@ abstract class AppServiceClient {
 
    @GET("/home")
   Future<HomeResponse> getHomeData();
+     @GET("/storeDetails/1")
+  Future<StoreDetailsResponse > getStoreDetails();
 }

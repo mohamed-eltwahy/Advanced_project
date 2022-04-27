@@ -37,6 +37,9 @@ class AppStrings {
   static const search = "Search Page";
     static const services = "Services";
   static const stores = "Stores";
+    static const String details = "Details";
+  static const String about = "About Store";
+  static const String storeDetails = "Store details";
 
   static String onBoardingsubTitle1 =
       "Tut app is an awesome flutter application using clean architecture #1";
