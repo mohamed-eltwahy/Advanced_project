@@ -1,6 +1,6 @@
+import '../../presentation/resources/strings.dart';
 import 'failure.dart';
 import 'package:dio/dio.dart';
-
 
 class ErrorHandler implements Exception {
   late Failure failure;
@@ -33,7 +33,7 @@ Failure _handleError(DioError error) {
       } else {
         return DataSource.DEFAULT.getFailure();
       }
-      case DioErrorType.cancel:
+    case DioErrorType.cancel:
       return DataSource.CANCEL.getFailure();
     case DioErrorType.other:
       return DataSource.DEFAULT.getFailure();
@@ -77,28 +77,28 @@ class ResponseCode {
 }
 
 class ResponseMessage {
-  static const String SUCCESS = "success"; // success with data
+  static const String SUCCESS = AppStrings.success; // success with data
   static const String NO_CONTENT =
-      "success"; // success with no data (no content)
+      AppStrings.success; // success with no data (no content)
   static const String BAD_REQUEST =
-      "Bad request, Try again later"; // failure, API rejected request
+      AppStrings.badRequestError; // failure, API rejected request
   static const String UNAUTORISED =
-      "User is unauthorised, Try again later"; // failure, user is not authorised
+      AppStrings.unauthorizedError; // failure, user is not authorised
   static const String FORBIDDEN =
-      "Forbidden request, Try again later"; //  failure, API rejected request
+      AppStrings.forbiddenError; //  failure, API rejected request
   static const String INTERNAL_SERVER_ERROR =
-      "Some thing went wrong, Try again later"; // failure, crash in server side
+      AppStrings.internalServerError; // failure, crash in server side
+  static const String NOT_FOUND =
+      AppStrings.notFoundError; // failure, crash in server side
 
   // local status code
-  static const String CONNECT_TIMEOUT = "Time out error, Try again later";
-  static const String CANCEL = "Request was cancelled, Try again later";
-  static const String RECIEVE_TIMEOUT = "Time out error, Try again later";
-  static const String SEND_TIMEOUT = "Time out error, Try again later";
-  static const String CACHE_ERROR = "Cache error, Try again later";
-  static const String NO_INTERNET_CONNECTION =
-      "Please check your internet connection";
-  static const String DEFAULT = "Some thing went wrong, Try again later";
-  static const String NOT_FOUND = "Some thing went wrong, Try again later";
+  static const String CONNECT_TIMEOUT = AppStrings.timeoutError;
+  static const String CANCEL = AppStrings.defaultError;
+  static const String RECIEVE_TIMEOUT = AppStrings.timeoutError;
+  static const String SEND_TIMEOUT = AppStrings.timeoutError;
+  static const String CACHE_ERROR = AppStrings.cacheError;
+  static const String NO_INTERNET_CONNECTION = AppStrings.noInternetError;
+  static const String DEFAULT = AppStrings.defaultError;
 }
 
 extension DataSourceExtension on DataSource {
@@ -135,13 +135,12 @@ extension DataSourceExtension on DataSource {
         return Failure(ResponseCode.NO_INTERNET_CONNECTION,
             ResponseMessage.NO_INTERNET_CONNECTION);
       case DataSource.DEFAULT:
-  return Failure(ResponseCode.DEFAULT,
-            ResponseMessage.DEFAULT);       
+        return Failure(ResponseCode.DEFAULT, ResponseMessage.DEFAULT);
     }
   }
 }
 
-class ApiInternalStatus{
-  static const int Sucess=0;
-  static const int Failure=1;
+class ApiInternalStatus {
+  static const int Sucess = 0;
+  static const int Failure = 1;
 }

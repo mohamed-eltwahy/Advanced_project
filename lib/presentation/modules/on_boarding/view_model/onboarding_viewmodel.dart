@@ -12,13 +12,13 @@ class OnBoardingViewModel extends BaseViewModel
   int _currentIndex = 0;
 
   List<SliderObject> _getSliderData() => [
-        SliderObject(AppStrings.onBoarding1, AppStrings.onBoardingsubTitle1,
+        SliderObject(AppStrings.onBoardingTitle1, AppStrings.onBoardingSubTitle1,
             AssetsManaget.onboarding1),
-        SliderObject(AppStrings.onBoarding2, AppStrings.onBoardingsubTitl2,
+        SliderObject(AppStrings.onBoardingTitle2, AppStrings.onBoardingSubTitle2,
             AssetsManaget.onboarding2),
-        SliderObject(AppStrings.onBoarding3, AppStrings.onBoardingsubTitle3,
+        SliderObject(AppStrings.onBoardingTitle3, AppStrings.onBoardingSubTitle3,
             AssetsManaget.onboarding3),
-        SliderObject(AppStrings.onBoarding4, AppStrings.onBoardingsubTitle4,
+        SliderObject(AppStrings.onBoardingTitle4, AppStrings.onBoardingSubTitle4,
             AssetsManaget.onboarding4),
       ];
 

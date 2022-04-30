@@ -5,6 +5,7 @@ import 'package:advanced_tips/presentation/modules/main_view/settings/settings_p
 import 'package:advanced_tips/presentation/resources/colors.dart';
 import 'package:advanced_tips/presentation/resources/strings.dart';
 import 'package:advanced_tips/presentation/resources/values.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class MainView extends StatefulWidget {
@@ -25,7 +26,7 @@ class _MainViewState extends State<MainView> {
   List<String> titles = [
     AppStrings.home,
     AppStrings.search,
-    AppStrings.notification,
+    AppStrings.notifications,
     AppStrings.settings,
   ];
 
@@ -47,16 +48,18 @@ class _MainViewState extends State<MainView> {
           unselectedItemColor: ColorManager.grey,
           currentIndex: _currentIndex,
           onTap: onTap,
-          items: const [
+          items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined), label: AppStrings.home),
+                icon: const Icon(Icons.home_outlined),
+                label: AppStrings.home.tr()),
             BottomNavigationBarItem(
-                icon: Icon(Icons.search), label: AppStrings.search),
+                icon: const Icon(Icons.search), label: AppStrings.search.tr()),
             BottomNavigationBarItem(
-                icon: Icon(Icons.notifications),
-                label: AppStrings.notification),
+                icon: const Icon(Icons.notifications),
+                label: AppStrings.notifications.tr()),
             BottomNavigationBarItem(
-                icon: Icon(Icons.settings), label: AppStrings.settings),
+                icon: const Icon(Icons.settings),
+                label: AppStrings.settings.tr()),
           ],
         ),
       ),

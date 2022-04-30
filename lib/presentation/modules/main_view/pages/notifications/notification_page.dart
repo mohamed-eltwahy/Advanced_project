@@ -13,7 +13,7 @@ class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: const Text(AppStrings.notification),
+      child: const Text(AppStrings.notifications),
     );
   }
 }

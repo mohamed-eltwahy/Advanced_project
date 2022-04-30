@@ -1,7 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../presentation/resources/language_manager.dart';
-
 
 const String PREFS_KEY_LANG = "PREFS_KEY_LANG";
 const String PREFS_KEY_ONBOARDING_SCREEN_VIEWED =
@@ -19,11 +19,33 @@ class AppPreferences {
       return language;
     } else {
       // return default lang
-    return  LanguageType.ENGLISH.getValue();
+      return LanguageType.ENGLISH.getValue();
     }
   }
 
-    // on boarding
+  Future<void> changeAppLanguage() async {
+    String currentLang = await getAppLanguage();
+
+    if (currentLang == LanguageType.ARABIC.getValue()) {
+      _sharedPreferences.setString(
+          PREFS_KEY_LANG, LanguageType.ENGLISH.getValue());
+    } else {
+      _sharedPreferences.setString(
+          PREFS_KEY_LANG, LanguageType.ARABIC.getValue());
+    }
+  }
+
+  Future<Locale> getLocale() async {
+    String currentLang = await getAppLanguage();
+
+    if (currentLang == LanguageType.ARABIC.getValue()) {
+      return arabic_locale;
+    } else {
+      return english_locale;
+    }
+  }
+
+  // on boarding
 
   Future<void> setOnBoardingScreenViewed() async {
     _sharedPreferences.setBool(PREFS_KEY_ONBOARDING_SCREEN_VIEWED, true);
@@ -42,5 +64,9 @@ class AppPreferences {
 
   Future<bool> isUserLoggedIn() async {
     return _sharedPreferences.getBool(PREFS_KEY_IS_USER_LOGGED_IN) ?? false;
+  }
+
+  Future<void> logout() async {
+    _sharedPreferences.remove(PREFS_KEY_IS_USER_LOGGED_IN);
   }
 }
