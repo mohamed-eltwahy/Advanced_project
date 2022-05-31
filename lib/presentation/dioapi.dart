@@ -20,7 +20,7 @@ class DioApi {
       ? 'يوجد مشكلة فى السيرفر برجاء مراجعة إدارة التطبيق'
       : 'There is a problem with the server, please check the application management');
 
-  dynamic sendDioApi({
+  static dynamic sendDioApiRequest({
     required String? url,
     required String methodType,
     dynamic dioBody,
@@ -29,7 +29,7 @@ class DioApi {
     var response;
     bool isSocketException = false;
     var connectivityResult = await (Connectivity().checkConnectivity());
-     // var connectivityResult = ConnectivityResult.mobile;
+    // var connectivityResult = ConnectivityResult.mobile;
     if (connectivityResult == ConnectivityResult.mobile ||
         connectivityResult == ConnectivityResult.wifi) {
       try {
@@ -45,8 +45,7 @@ class DioApi {
           )
               .catchError((onError) {
             isSocketException = true;
-               Print.red(onError.toString());
-
+            Print.red(onError.toString());
           });
         } else if (methodType == 'POST' || methodType == 'post') {
           response = await Dio()
@@ -58,7 +57,7 @@ class DioApi {
                           status! >= 200 && status <= 500))
               .catchError((onError) {
             isSocketException = true;
-               Print.red(onError.toString());
+            Print.red(onError.toString());
           });
         } else if (methodType == 'PUT' || methodType == 'put') {
           response = await Dio()
@@ -70,7 +69,7 @@ class DioApi {
                           status! >= 200 && status <= 500))
               .catchError((onError) {
             isSocketException = true;
-               Print.red(onError.toString());
+            Print.red(onError.toString());
           });
         } else if (methodType == 'DELETE' || methodType == 'delete') {
           response = await Dio()
@@ -82,17 +81,17 @@ class DioApi {
                           status! >= 200 && status <= 500))
               .catchError((onError) {
             isSocketException = true;
-               Print.red(onError.toString());
+            Print.red(onError.toString());
           });
         }
         // Print.green('Response DioApi is >>> ' + response.toString());
-             if (!kReleaseMode) {
-      Dio().interceptors.add(PrettyDioLogger(
-        requestHeader: true,
-        requestBody: true,
-        responseHeader: true,
-      ));
-    }
+        if (!kReleaseMode) {
+          Dio().interceptors.add(PrettyDioLogger(
+                requestHeader: true,
+                requestBody: true,
+                responseHeader: true,
+              ));
+        }
 
         if (response.statusCode >= 200 && response.statusCode <= 299) {
           return responsMap(
@@ -100,19 +99,18 @@ class DioApi {
               message: response.data['message'],
               data: response.data['data']);
         } else if (response.statusCode >= 500) {
-                                   Print.red(response.statusCode);
+          Print.red(response.statusCode);
 
           return responsMap(status: false, message: serverErrorError);
         } else if (isSocketException) {
-
           return responsMap(status: false, message: weakInternetError);
         } else if (response.statusCode == 401 || response.statusCode == 302) {
-                         Print.red(response.statusCode);
+          Print.red(response.statusCode);
 
           return responsMap(
               status: false, message: response.data['message'], data: null);
         } else if (response.statusCode >= 400 && response.statusCode <= 499) {
-                                   Print.red(response.statusCode);
+          Print.red(response.statusCode);
 
           return responsMap(
               status: false, message: response.data['message'], data: null);
@@ -124,14 +122,13 @@ class DioApi {
         return responsMap(status: false, message: globalError, data: null);
       }
     } else {
-
-                         Print.red('noInternetsError');
+      Print.red('noInternetsError');
 
       return responsMap(status: false, message: noInternetsError, data: null);
     }
   }
 
-  static dynamic responsMap({dynamic? status, String? message, dynamic data}) {
+  static dynamic responsMap({dynamic status, String? message, dynamic data}) {
     //   print('from inside responsMap');
     return {"status": status, "message": message.toString(), "data": data};
   }
